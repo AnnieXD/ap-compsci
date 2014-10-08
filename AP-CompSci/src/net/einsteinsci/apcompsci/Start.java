@@ -61,7 +61,7 @@
 
 package net.einsteinsci.apcompsci;
 
-import net.einsteinsci.apcompsci.p04_minigames.P04_Start;
+import net.einsteinsci.apcompsci.p05_inheritance.P05_Start;
 
 import java.util.Scanner;
 
@@ -75,7 +75,7 @@ public final class Start
 		// Launch Section Here //
 		//=====================//
 
-		P04_Start.main();
+		P05_Start.main();
 	}
 
 	public static void print(Object output)

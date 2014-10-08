@@ -76,6 +76,12 @@ public class P05_3DShapes
 				float div = (1 - e * e) / e;
 				return twoPiASquared * (1 + div * (float)atanh(e));
 			}
+			else
+			{
+				float e = (float)Math.sqrt(1 - (a * a) / (c * c));
+				float div = c / (a * e);
+				return twoPiASquared * (1 + div * (float)(Math.asin(e)));
+			}
 		}
 
 		public boolean isOblate()
