@@ -7,9 +7,98 @@ public class P05_3DShapes
 {
 	public static void main()
 	{
-		Shapeoid oid;
+		Shapeoid oid = null;
 
+		boolean recognized = true;
+		do
+		{
+			String type = Start.getLine("Enter shapeoid type. Valid types are:" +
+												"\n\tCylinder, Cuboid, Cube, TriPrism," +
+												"\n\tSquarePyramid, Cone, TriPyramid, Tetrahedron" +
+												"\n\tSpheroid, and Sphere." +
+												"\nTYPE> ");
+			if (type.equalsIgnoreCase("cylinder"))
+			{
+				float r = Start.getFloat("Radius: ");
+				float h = Start.getFloat("Height: ");
 
+				oid = new Cylinder(r, h);
+			}
+			else if (type.equalsIgnoreCase("cuboid"))
+			{
+				float l = Start.getFloat("Length: ");
+				float w = Start.getFloat("Width: ");
+				float h = Start.getFloat("Height: ");
+
+				oid = new Cuboid(w, l, h);
+			}
+			else if (type.equalsIgnoreCase("cube"))
+			{
+				float s = Start.getFloat("Side Length: ");
+
+				oid = new Cube(s);
+			}
+			else if (type.equalsIgnoreCase("triprism"))
+			{
+				float s = Start.getFloat("Base Side Length: ");
+				float h = Start.getFloat("Height: ");
+
+				oid = new EquilateralTriangularPrism(s, h);
+			}
+			else if (type.equalsIgnoreCase("squarepyramid"))
+			{
+				float s = Start.getFloat("Base Side Length: ");
+				float h = Start.getFloat("Height: ");
+
+				oid = new SquarePyramid(s, h);
+			}
+			else if (type.equalsIgnoreCase("cone"))
+			{
+				float r = Start.getFloat("Radius: ");
+				float h = Start.getFloat("Height: ");
+
+				oid = new Cone(r, h);
+			}
+			else if (type.equalsIgnoreCase("tripyramid"))
+			{
+				float s = Start.getFloat("Side Length: ");
+				float h = Start.getFloat("Height: ");
+
+				oid = new EquilateralTriangularPyramid(s, h);
+			}
+			else if (type.equalsIgnoreCase("tetrahedron"))
+			{
+				float s = Start.getFloat("Side Length: ");
+
+				oid = new Tetrahedron(s);
+			}
+			else if (type.equalsIgnoreCase("spheroid"))
+			{
+				float a = Start.getFloat("Equatorial Radius: ");
+				float b = Start.getFloat("Polar Radius: ");
+
+				oid = new Spheroid(b, a);
+			}
+			else if (type.equalsIgnoreCase("sphere"))
+			{
+				float r = Start.getFloat("Radius: ");
+
+				oid = new Sphere(r);
+			}
+			else
+			{
+				recognized = false;
+			}
+		} while (!recognized);
+
+		float v = oid.getVolume();
+		float a = oid.getSurfaceArea();
+
+		Start.println();
+		Start.println("Volume: " + v);
+		Start.println("Surface Area: " + a);
+
+		Start.sleep(50);
 	}
 
 	public static interface IShapeoid
@@ -172,7 +261,8 @@ public class P05_3DShapes
 
 		public float getVolume()
 		{
-			return (1 / 3) * getBase() * height;
+			final float ONETHIRD = (float)(1.0 / 3.0);
+			return ONETHIRD * getBase() * height;
 		}
 
 		public float getSurfaceArea()
@@ -288,19 +378,19 @@ public class P05_3DShapes
 
 	// Spheroids
 
-	public static abstract class Spheroid extends Shapeoid implements IShapeoid
+	public static class Spheroid extends Shapeoid implements IShapeoid
 	{
 		public static double asinh(double x)
 		{
-			return Math.log(x + Math.sqrt(x * x + 1));
+			return Math.log(x + Math.sqrt(x * x + 1.0));
 		}
 		public static double acosh(double x)
 		{
-			return Math.log(x + Math.sqrt(x * x - 1));
+			return Math.log(x + Math.sqrt(x * x - 1.0));
 		}
 		public static double atanh(double x)
 		{
-			return 0.5 * Math.log((x + 1) / (x - 1));
+			return 0.5 * Math.log((x + 1.0) / (x - 1.0));
 		}
 
 		protected float a; // equatorial radius
@@ -314,7 +404,7 @@ public class P05_3DShapes
 
 		public float getVolume()
 		{
-			final float fourPiOverThree = (4 * PI) / 3;
+			final float fourPiOverThree = (float)((4.0 * PI) / 3.0);
 			return fourPiOverThree * a * a * c;
 		}
 
@@ -326,19 +416,22 @@ public class P05_3DShapes
 				return sphere.getSurfaceArea();
 			}
 
-			float twoPiASquared = 2 * PI * a * a;
+			float twoPiASquared = (float)(2.0 * PI * a * a);
 
 			if (isOblate())
 			{
-				float e = (float)Math.sqrt(1 - (c * c) / (a * a));
-				float div = (1 - e * e) / e;
-				return twoPiASquared * (1 + div * (float)atanh(e));
+				float under = (float)(1.0 - (c * c) / (a * a));
+				float e = (float)Math.sqrt(under);
+				float div = (float)((1.0 - e * e) / e);
+				float atanhe = (float)atanh(e);
+				return (float)(twoPiASquared * (1.0 + div * atanhe));
 			}
 			else
 			{
-				float e = (float)Math.sqrt(1 - (a * a) / (c * c));
+				float under = (float)(1.0 - (a * a) / (c * c));
+				float e = (float)Math.sqrt(under);
 				float div = c / (a * e);
-				return twoPiASquared * (1 + div * (float)(Math.asin(e)));
+				return (float)(twoPiASquared * (1.0 + div * (float)(Math.asin(e))));
 			}
 		}
 
