@@ -416,22 +416,26 @@ public class P05_3DShapes
 				return sphere.getSurfaceArea();
 			}
 
-			float twoPiASquared = (float)(2.0 * PI * a * a);
+			float twoPiASquared = (float) (2.0 * PI * a * a);
 
 			if (isOblate())
 			{
-				float under = (float)(1.0 - (c * c) / (a * a));
-				float e = (float)Math.sqrt(under);
-				float div = (float)((1.0 - e * e) / e);
-				float atanhe = (float)atanh(e);
-				return (float)(twoPiASquared * (1.0 + div * atanhe));
+				Start.printErr(new ArithmeticException("Calculating the surface area of an oblate spheroid requires \n" +
+															   "using the inverse hyperbolic tangent. Such a function is \n" +
+															   "difficult to implement currently. Results will be inaccurate."));
+
+				float under = (float) (1.0 - (c * c) / (a * a));
+				float e = (float) Math.sqrt(under);
+				float div = (float) ((1.0 - e * e) / e);
+				float atanhe = (float) atanh(e);
+				return (float) (twoPiASquared * (1.0 + div * atanhe));
 			}
 			else
 			{
-				float under = (float)(1.0 - (a * a) / (c * c));
-				float e = (float)Math.sqrt(under);
+				float under = (float) (1.0 - (a * a) / (c * c));
+				float e = (float) Math.sqrt(under);
 				float div = c / (a * e);
-				return (float)(twoPiASquared * (1.0 + div * (float)(Math.asin(e))));
+				return (float) (twoPiASquared * (1.0 + div * (float) (Math.asin(e))));
 			}
 		}
 
@@ -477,6 +481,20 @@ public class P05_3DShapes
 		public float getRadius()
 		{
 			return a;
+		}
+
+		@Override
+		public float getVolume()
+		{
+			float fourThirdsPi = (float)(4.0 / 3.0) * PI;
+			return fourThirdsPi * getRadius() * getRadius() * getRadius();
+		}
+
+		@Override
+		public float getSurfaceArea()
+		{
+			float fourPi = (float)(4.0 * PI);
+			return fourPi * getRadius() * getRadius();
 		}
 	}
 }
