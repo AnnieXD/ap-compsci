@@ -1,4 +1,6 @@
 /*
+ * NEEDS WORK
+ *
  * Author: Ryan Peacock
  * Project: Mastermind
  * Filename: P04_Mastermind.java
@@ -157,7 +159,6 @@ public class P04_Mastermind
 		
 		public void runGame()
 		{
-			boolean win = false;
 			if (DEBUG)
 			{
 				Console.println("Number loaded: " + pattern.getString());

@@ -27,16 +27,16 @@
 
 package net.einsteinsci.apcompsci.p02_math;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public class P02_Squares 
 {
 	public static void main(int squareTo)
 	{
-		Start.println("First " + squareTo + " squares: ");
+		Console.println("First " + squareTo + " squares: ");
 		for (int i = 1; i <= squareTo; ++i)
 		{
-			Start.println(square(i));
+			Console.println(square(i));
 		}
 	}
 	

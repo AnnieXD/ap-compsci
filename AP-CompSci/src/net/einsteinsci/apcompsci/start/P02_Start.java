@@ -1,7 +1,7 @@
 /*
  * Author: Ryan Peacock
  * Project: Starter for week 2 'math' programs
- * Filename: P02_Start.java
+ * Filename: P02_Console.java
  * Purpose: Launch the week 2 'math' programs from a centralized place
  * Pseudocode:
  * 
@@ -20,20 +20,20 @@
 
 package net.einsteinsci.apcompsci.start;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 import net.einsteinsci.apcompsci.p02_math.*;
 
 public class P02_Start
 {
 	public static void main()
 	{
-		Start.println("====================================================\nFIBONACCI:");
-		P02_Fibonacci.main(Start.getInt("First n Fibonacci numbers: "), false);
-		Start.println("====================================================\nSQUARES:");
-		P02_Squares.main(Start.getInt("First n square numbers: "));
-		Start.println("====================================================\nQUADRATIC:");
-		P02_Quadratic.main(Start.getFloat("Ax^2 + Bx + C\nA = "), Start.getFloat("B = "), Start.getFloat("C = "));
-		Start.println("====================================================\nTRIANGLE:");
-		P02_Triangle.main(Start.getFloat("Side A: "), Start.getFloat("Side B: "), Start.getFloat("Side C: "));
+		Console.println("====================================================\nFIBONACCI:");
+		P02_Fibonacci.main(Console.getInt("First n Fibonacci numbers: "), false);
+		Console.println("====================================================\nSQUARES:");
+		P02_Squares.main(Console.getInt("First n square numbers: "));
+		Console.println("====================================================\nQUADRATIC:");
+		P02_Quadratic.main(Console.getFloat("Ax^2 + Bx + C\nA = "), Console.getFloat("B = "), Console.getFloat("C = "));
+		Console.println("====================================================\nTRIANGLE:");
+		P02_Triangle.main(Console.getFloat("Side A: "), Console.getFloat("Side B: "), Console.getFloat("Side C: "));
 	}
 }

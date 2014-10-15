@@ -24,7 +24,7 @@
 
 package net.einsteinsci.apcompsci.p02_math;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public class P02_Fibonacci
 {
@@ -32,11 +32,11 @@ public class P02_Fibonacci
 	
 	public static void main(int depth)
 	{
-		Start.println("First " + depth + " numbers of the Fibonacci Sequence: ");
+		Console.println("First " + depth + " numbers of the Fibonacci Sequence: ");
 		iterations = 0;
 		for (int i = 1; i <= depth; ++i)
 		{
-			Start.println(fibonacciEval(i));
+			Console.println(fibonacciEval(i));
 		}
 	}
 	public static void main(int depth, boolean showIterations)
@@ -45,7 +45,7 @@ public class P02_Fibonacci
 		
 		if (showIterations)
 		{
-			Start.println("\nIterations: " + iterations);
+			Console.println("\nIterations: " + iterations);
 		}
 	}
 	

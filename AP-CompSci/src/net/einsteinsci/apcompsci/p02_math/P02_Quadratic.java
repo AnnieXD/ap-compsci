@@ -23,14 +23,14 @@
 
 package net.einsteinsci.apcompsci.p02_math;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public class P02_Quadratic 
 {
 	public static void main(double a, double b, double c)
 	{
-		Start.println("> " + a + "x^2 + " + b + "x + " + c + " = 0");
-		Start.println("Roots: " + quadraticPlus(a, b, c) + " and " + quadraticMinus(a, b, c));
+		Console.println("> " + a + "x^2 + " + b + "x + " + c + " = 0");
+		Console.println("Roots: " + quadraticPlus(a, b, c) + " and " + quadraticMinus(a, b, c));
 	}
 	
 	private static double quadraticPlus(double a, double b, double c)
