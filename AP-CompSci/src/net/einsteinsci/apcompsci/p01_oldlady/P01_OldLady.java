@@ -87,7 +87,7 @@
 
 package net.einsteinsci.apcompsci.p01_oldlady;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public final class P01_OldLady 
 {
@@ -98,17 +98,17 @@ public final class P01_OldLady
 		for (int i = 0; i < ANIMALS.length; ++i)
 		{
 			printAnimal(i);
-			Start.print("\n");
+			Console.print("\n");
 		}
 	}
 	
 	private static void wasAnOldLady(String animal)
 	{
-		Start.println("There was an old lady who swallowed a " + animal + ",");
+		Console.println("There was an old lady who swallowed a " + animal + ",");
 	}
 	private static void perhaps()
 	{
-		Start.println("Perhaps she'll die.");
+		Console.println("Perhaps she'll die.");
 	}
 	
 	private static String purpose(int swallowedIndex)
@@ -122,15 +122,15 @@ public final class P01_OldLady
 		switch (index)
 		{
 		case 0:
-			Start.println(reasons(index));
+			Console.println(reasons(index));
 			perhaps();
 			break;
 		case 5: //ANIMALS[5] == "horse". Must explicitly state a value here, no dynamic expressions
-			Start.println(specific(ANIMALS[index]));
+			Console.println(specific(ANIMALS[index]));
 			break;
 		default:
-			Start.println(specific(ANIMALS[index]));
-			Start.println(reasons(index));
+			Console.println(specific(ANIMALS[index]));
+			Console.println(reasons(index));
 			perhaps();
 			break;
 		}

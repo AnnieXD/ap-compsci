@@ -21,14 +21,14 @@
 
 package net.einsteinsci.apcompsci.p03_strings;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public class P03_Replicator
 {
 	
 	public static void main(String repl, int n)
 	{
-		Start.println(repl(repl, n));
+		Console.println(repl(repl, n));
 	}
 	
 	private static String repl(String str, int n)

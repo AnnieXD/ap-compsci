@@ -1,7 +1,7 @@
 package net.einsteinsci.apcompsci.p05_inheritance;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public class P05_3DShapes
 {
@@ -12,76 +12,76 @@ public class P05_3DShapes
 		boolean recognized = true;
 		do
 		{
-			String type = Start.getLine("Enter shapeoid type. Valid types are:" +
+			String type = Console.getLine("Enter shapeoid type. Valid types are:" +
 												"\n\tCylinder, Cuboid, Cube, TriPrism," +
 												"\n\tSquarePyramid, Cone, TriPyramid, Tetrahedron" +
 												"\n\tSpheroid, and Sphere." +
 												"\nTYPE> ");
 			if (type.equalsIgnoreCase("cylinder"))
 			{
-				float r = Start.getFloat("Radius: ");
-				float h = Start.getFloat("Height: ");
+				float r = Console.getFloat("Radius: ");
+				float h = Console.getFloat("Height: ");
 
 				oid = new Cylinder(r, h);
 			}
 			else if (type.equalsIgnoreCase("cuboid"))
 			{
-				float l = Start.getFloat("Length: ");
-				float w = Start.getFloat("Width: ");
-				float h = Start.getFloat("Height: ");
+				float l = Console.getFloat("Length: ");
+				float w = Console.getFloat("Width: ");
+				float h = Console.getFloat("Height: ");
 
 				oid = new Cuboid(w, l, h);
 			}
 			else if (type.equalsIgnoreCase("cube"))
 			{
-				float s = Start.getFloat("Side Length: ");
+				float s = Console.getFloat("Side Length: ");
 
 				oid = new Cube(s);
 			}
 			else if (type.equalsIgnoreCase("triprism"))
 			{
-				float s = Start.getFloat("Base Side Length: ");
-				float h = Start.getFloat("Height: ");
+				float s = Console.getFloat("Base Side Length: ");
+				float h = Console.getFloat("Height: ");
 
 				oid = new EquilateralTriangularPrism(s, h);
 			}
 			else if (type.equalsIgnoreCase("squarepyramid"))
 			{
-				float s = Start.getFloat("Base Side Length: ");
-				float h = Start.getFloat("Height: ");
+				float s = Console.getFloat("Base Side Length: ");
+				float h = Console.getFloat("Height: ");
 
 				oid = new SquarePyramid(s, h);
 			}
 			else if (type.equalsIgnoreCase("cone"))
 			{
-				float r = Start.getFloat("Radius: ");
-				float h = Start.getFloat("Height: ");
+				float r = Console.getFloat("Radius: ");
+				float h = Console.getFloat("Height: ");
 
 				oid = new Cone(r, h);
 			}
 			else if (type.equalsIgnoreCase("tripyramid"))
 			{
-				float s = Start.getFloat("Side Length: ");
-				float h = Start.getFloat("Height: ");
+				float s = Console.getFloat("Side Length: ");
+				float h = Console.getFloat("Height: ");
 
 				oid = new EquilateralTriangularPyramid(s, h);
 			}
 			else if (type.equalsIgnoreCase("tetrahedron"))
 			{
-				float s = Start.getFloat("Side Length: ");
+				float s = Console.getFloat("Side Length: ");
 
 				oid = new Tetrahedron(s);
 			}
 			else if (type.equalsIgnoreCase("spheroid"))
 			{
-				float a = Start.getFloat("Equatorial Radius: ");
-				float b = Start.getFloat("Polar Radius: ");
+				float a = Console.getFloat("Equatorial Radius: ");
+				float b = Console.getFloat("Polar Radius: ");
 
 				oid = new Spheroid(b, a);
 			}
 			else if (type.equalsIgnoreCase("sphere"))
 			{
-				float r = Start.getFloat("Radius: ");
+				float r = Console.getFloat("Radius: ");
 
 				oid = new Sphere(r);
 			}
@@ -94,11 +94,11 @@ public class P05_3DShapes
 		float v = oid.getVolume();
 		float a = oid.getSurfaceArea();
 
-		Start.println();
-		Start.println("Volume: " + v);
-		Start.println("Surface Area: " + a);
+		Console.println();
+		Console.println("Volume: " + v);
+		Console.println("Surface Area: " + a);
 
-		Start.sleep(50);
+		Console.sleep(50);
 	}
 
 	public static interface IShapeoid
@@ -420,7 +420,7 @@ public class P05_3DShapes
 
 			if (isOblate())
 			{
-				Start.printErr(new ArithmeticException("Calculating the surface area of an oblate spheroid requires \n" +
+				Console.printErr(new ArithmeticException("Calculating the surface area of an oblate spheroid requires \n" +
 															   "using the inverse hyperbolic tangent. Such a function is \n" +
 															   "difficult to implement currently. Results will be inaccurate."));
 
@@ -468,7 +468,7 @@ public class P05_3DShapes
 
 			if (oid.a != oid.c)
 			{
-				Start.printErr(new InvalidArgumentException(
+				Console.printErr(new InvalidArgumentException(
 						new String[] {"Spheroid is not a sphere. a = " + oid.a + ", c = " + oid.c}));
 			}
 		}

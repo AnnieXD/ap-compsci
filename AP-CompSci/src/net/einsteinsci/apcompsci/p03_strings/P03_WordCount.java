@@ -69,9 +69,9 @@
 
 package net.einsteinsci.apcompsci.p03_strings;
 
-import java.io.*;
+import net.einsteinsci.apcompsci.Console;
 
-import net.einsteinsci.apcompsci.Start;
+import java.io.*;
 
 public class P03_WordCount
 {
@@ -100,12 +100,12 @@ public class P03_WordCount
 			analyze = document;
 		}
 		
-		Start.println("----- Document: ------");
-		Start.println(analyze);
-		Start.println("----------------------");
-		Start.println("Word Count: " + getWordCount(analyze));
-		Start.println("Line Count: " + getLineCount(analyze));
-		Start.println("Character Count (Excluding Whitespace): " + getCharCount(analyze));
+		Console.println("----- Document: ------");
+		Console.println(analyze);
+		Console.println("----------------------");
+		Console.println("Word Count: " + getWordCount(analyze));
+		Console.println("Line Count: " + getLineCount(analyze));
+		Console.println("Character Count (Excluding Whitespace): " + getCharCount(analyze));
 	}
 	
 	private static int getWordCount(String doc)

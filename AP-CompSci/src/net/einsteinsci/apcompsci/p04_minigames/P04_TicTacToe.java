@@ -1,6 +1,6 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 import java.awt.*;
 import java.util.Random;
@@ -48,7 +48,7 @@ public class P04_TicTacToe
 				}
 				else
 				{
-					Start.sleep(500);
+					Console.sleep(500);
 
 					setSpot(getAISpot(), ai);
 				}
@@ -58,26 +58,26 @@ public class P04_TicTacToe
 
 			renderBoard();
 
-			Start.println();
+			Console.println();
 			
 			if (getWinner() == ai)
 			{
-				Start.println("You lose.");
+				Console.println("You lose.");
 			}
 			else if (getWinner() == player)
 			{
-				Start.println("You win!");
+				Console.println("You win!");
 			}
 			else if (isTied())
 			{
-				Start.println("Tie.");
+				Console.println("Tie.");
 			}
 			else
 			{
-				Start.println("Error. Wierdness happened.");
+				Console.println("Error. Wierdness happened.");
 			}
 
-			Start.println();
+			Console.println();
 		}
 		
 		public void playerTurn()
@@ -88,12 +88,12 @@ public class P04_TicTacToe
 
 			do
 			{
-				int x = Start.getInt("Row: ");
-				int y = Start.getInt("Column: ");
+				int x = Console.getInt("Row: ");
+				int y = Console.getInt("Column: ");
 
 				if (x > 3 || x < 1 || y > 3 || y < 1)
 				{
-					Start.println("No such space.");
+					Console.println("No such space.");
 					continue;
 				}
 				
@@ -103,7 +103,7 @@ public class P04_TicTacToe
 				
 				if (occupied)
 				{
-					Start.println("Space occupied.");
+					Console.println("Space occupied.");
 				}
 			} while (occupied);
 			
@@ -112,22 +112,22 @@ public class P04_TicTacToe
 		
 		public void renderBoard()
 		{
-			Start.println();
+			Console.println();
 
 			for (int i = 0; i < 3; ++i)
 			{
 				for (int j = 0; j < 3; ++j)
 				{
-					Start.print(board[i][j].getRender());
+					Console.print(board[i][j].getRender());
 				}
 				
-				Start.println();
+				Console.println();
 			}
 		}
 
 		public void showHelp()
 		{
-			Start.println("Enter row first, then column. You are " + player.toString() + "'s. Don't mess up.");
+			Console.println("Enter row first, then column. You are " + player.toString() + "'s. Don't mess up.");
 		}
 
 		public TTTPiece getSpot(Point spot)

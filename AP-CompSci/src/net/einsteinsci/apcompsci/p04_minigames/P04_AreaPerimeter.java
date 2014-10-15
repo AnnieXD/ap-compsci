@@ -1,45 +1,45 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 public class P04_AreaPerimeter
 {
 	public static void main()
 	{
-		String shape = Start.getLine("Enter shape to create. Valid entries are 'circle', 'rect', and 'square'.\n> ");
+		String shape = Console.getLine("Enter shape to create. Valid entries are 'circle', 'rect', and 'square'.\n> ");
 
 		IShape created = null;
 
 		if (shape.equalsIgnoreCase("circle"))
 		{
-			float r = Start.getFloat("Radius: ");
+			float r = Console.getFloat("Radius: ");
 			created = new Circle(r);
 		}
 		else if (shape.equalsIgnoreCase("rect"))
 		{
-			float w = Start.getFloat("Width: ");
-			float h = Start.getFloat("Height: ");
+			float w = Console.getFloat("Width: ");
+			float h = Console.getFloat("Height: ");
 			created = new Rectangle(w, h);
 		}
 		else if (shape.equalsIgnoreCase("square"))
 		{
-			float s = Start.getFloat("Side length: ");
+			float s = Console.getFloat("Side length: ");
 			created = new Square(s);
 		}
 
 		if (created == null)
 		{
-			Start.println("Invalid shape");
-			Start.println();
+			Console.println("Invalid shape");
+			Console.println();
 			return;
 		}
 
-		Start.println();
+		Console.println();
 
-		Start.println("Area: " + created.getArea());
-		Start.println("Perimeter: " + created.getPerimeter());
+		Console.println("Area: " + created.getArea());
+		Console.println("Perimeter: " + created.getPerimeter());
 
-		Start.sleep(500);
+		Console.sleep(500);
 	}
 
 	public static abstract interface IShape

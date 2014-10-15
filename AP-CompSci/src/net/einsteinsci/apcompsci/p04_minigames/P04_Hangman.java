@@ -1,6 +1,6 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
-import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.Console;
 
 import java.util.Random;
 
@@ -32,32 +32,32 @@ public class P04_Hangman
 		
 		public void playGame()
 		{
-			Start.println("Word loaded.\n");
+			Console.println("Word loaded.\n");
 			render();
 			
 			while (true)
 			{
-				String s = Start.getLine("Guess a letter: ").trim();
+				String s = Console.getLine("Guess a letter: ").trim();
 				
 				if (s.length() > 1)
 				{
-					Start.println("One letter at a time, please.\n");
+					Console.println("One letter at a time, please.\n");
 					continue;
 				}
 				
 				if ((int)s.charAt(0) < (int)'A' || (int)s.charAt(0) > (int)'z')
 				{
-					Start.println("That's not a letter.\n");
+					Console.println("That's not a letter.\n");
 					continue;
 				}
 
-				Start.clearConsole();
+				Console.clearConsole();
 
 				char c = s.charAt(0);
 
 				if (charArrayContains(guessedLetters, c))
 				{
-					Start.println("You already guessed that.\n");
+					Console.println("You already guessed that.\n");
 					continue;
 				}
 				
@@ -76,11 +76,11 @@ public class P04_Hangman
 				
 				if (correct)
 				{
-					Start.println("Letter found!");
+					Console.println("Letter found!");
 				}
 				else
 				{
-					Start.println("Incorrect.");
+					Console.println("Incorrect.");
 					fails++;
 				}
 
@@ -88,13 +88,13 @@ public class P04_Hangman
 
 				if (fails > 5)
 				{
-					Start.println("You lose. The word was: " + new String(word));
+					Console.println("You lose. The word was: " + new String(word));
 					break;
 				}
 
 				if (hasWon())
 				{
-					Start.println("You won!");
+					Console.println("You won!");
 					break;
 				}
 			}
@@ -102,12 +102,12 @@ public class P04_Hangman
 
 		public void render()
 		{
-			Start.println("\nMissed guesses:");
-			Start.println(getWrongLettersRendered());
+			Console.println("\nMissed guesses:");
+			Console.println(getWrongLettersRendered());
 
-			Start.println("\n" + getRenderedMan());
+			Console.println("\n" + getRenderedMan());
 
-			Start.println("\n" + getRenderedWord());
+			Console.println("\n" + getRenderedWord());
 		}
 
 		public boolean hasWon()
