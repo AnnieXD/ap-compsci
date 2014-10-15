@@ -61,7 +61,7 @@
 
 package net.einsteinsci.apcompsci;
 
-import net.einsteinsci.apcompsci.p05_inheritance.P05_Start;
+import net.einsteinsci.apcompsci.start.P04_Start;
 
 import java.util.Scanner;
 
@@ -75,7 +75,7 @@ public final class Start
 		// Launch Section Here //
 		//=====================//
 
-		P05_Start.main();
+		P04_Start.main();
 	}
 
 	public static void print(Object output)

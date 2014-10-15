@@ -18,9 +18,10 @@
  *  }
  */
 
-package net.einsteinsci.apcompsci.p02_math;
+package net.einsteinsci.apcompsci.start;
 
 import net.einsteinsci.apcompsci.Start;
+import net.einsteinsci.apcompsci.p02_math.*;
 
 public class P02_Start
 {
