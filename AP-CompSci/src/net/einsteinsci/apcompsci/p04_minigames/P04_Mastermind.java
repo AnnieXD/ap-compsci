@@ -128,7 +128,7 @@ import java.util.*;
 
 public class P04_Mastermind
 {
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	
 	public static void main()
 	{
@@ -205,12 +205,20 @@ public class P04_Mastermind
 		
 		public int getSameNumCount()
 		{
-			int result = 0; 
+			int result = 0;
+
+			List<Character> lpat = new ArrayList<>();
+			for (char c : pattern.getPegs())
+			{
+				lpat.add(c);
+			}
+
 			for (char c : lastGuess.getPegs())
 			{
-				if (pattern.contains(c))
+				if (lpat.contains(c))
 				{
 					result++;
+					lpat.remove(new Character(c));
 				}
 			}
 			
