@@ -2,10 +2,11 @@ package net.einsteinsci.apcompsci.start;
 
 import net.einsteinsci.apcompsci.p01_oldlady.P01_OldLady;
 
-public class P01_Start
+public class P01_Start implements IStartable
 {
-	public static void main()
+	public static final IStartable program = new P01_OldLady();
+	public void main()
 	{
-		P01_OldLady.main();
+		program.main();
 	}
 }

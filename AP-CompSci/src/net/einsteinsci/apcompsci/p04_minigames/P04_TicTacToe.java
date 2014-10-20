@@ -1,13 +1,14 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
 import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.start.IStartable;
 
 import java.awt.*;
 import java.util.Random;
 
-public class P04_TicTacToe
+public class P04_TicTacToe implements IStartable
 {
-	public static void main()
+	public void main()
 	{
 		TicTacToeGame game = new TicTacToeGame();
 		game.play();

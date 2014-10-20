@@ -88,12 +88,13 @@
 package net.einsteinsci.apcompsci.p01_oldlady;
 
 import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.start.IStartable;
 
-public final class P01_OldLady 
+public final class P01_OldLady implements IStartable
 {
 	private static final String[] ANIMALS = {"fly", "spider", "bird", "cat", "dog", "horse"};
 	
-	public static void main()
+	public void main()
 	{	
 		for (int i = 0; i < ANIMALS.length; ++i)
 		{

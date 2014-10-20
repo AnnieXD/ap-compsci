@@ -1,11 +1,12 @@
 package net.einsteinsci.apcompsci.start;
 
-import net.einsteinsci.apcompsci.p05_inheritance.P05_3DShapes;
+import net.einsteinsci.apcompsci.p05_inheritance.P05_2DShapes;
 
-public class P05_Start
+public class P05_Start implements IStartable
 {
-	public static void main()
+	public static final IStartable program = new P05_2DShapes();
+	public void main()
 	{
-		P05_3DShapes.main();
+		program.main();
 	}
 }

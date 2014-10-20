@@ -1,46 +1,49 @@
-package net.einsteinsci.apcompsci.p04_minigames;
+package net.einsteinsci.apcompsci.p05_inheritance;
 
 import net.einsteinsci.apcompsci.Console;
 import net.einsteinsci.apcompsci.start.IStartable;
 
-public class P04_AreaPerimeter implements IStartable
+public class P05_2DShapes implements IStartable
 {
 	public void main()
 	{
-		String shape = Console.getLine("Enter shape to create. Valid entries are 'circle', 'rect', and 'square'.\n> ");
+		for (int i = 0; i < 1; ++i)
+		{
+			String shape = Console.getLine("Enter shape to create. Valid entries are 'circle', 'rect', and 'square'.\n> ");
 
-		IShape created = null;
+			IShape created = null;
 
-		if (shape.equalsIgnoreCase("circle"))
-		{
-			float r = Console.getFloat("Radius: ");
-			created = new Circle(r);
-		}
-		else if (shape.equalsIgnoreCase("rect"))
-		{
-			float w = Console.getFloat("Width: ");
-			float h = Console.getFloat("Height: ");
-			created = new Rectangle(w, h);
-		}
-		else if (shape.equalsIgnoreCase("square"))
-		{
-			float s = Console.getFloat("Side length: ");
-			created = new Square(s);
-		}
+			if (shape.equalsIgnoreCase("circle"))
+			{
+				float r = Console.getFloat("Radius: ");
+				created = new Circle(r);
+			}
+			else if (shape.equalsIgnoreCase("rect"))
+			{
+				float w = Console.getFloat("Width: ");
+				float h = Console.getFloat("Height: ");
+				created = new Rectangle(w, h);
+			}
+			else if (shape.equalsIgnoreCase("square"))
+			{
+				float s = Console.getFloat("Side length: ");
+				created = new Square(s);
+			}
 
-		if (created == null)
-		{
-			Console.println("Invalid shape");
+			if (created == null)
+			{
+				Console.println("Invalid shape");
+				Console.println();
+				return;
+			}
+
 			Console.println();
-			return;
+
+			Console.println("Area: " + created.getArea());
+			Console.println("Perimeter: " + created.getPerimeter());
+
+			Console.sleep(500);
 		}
-
-		Console.println();
-
-		Console.println("Area: " + created.getArea());
-		Console.println("Perimeter: " + created.getPerimeter());
-
-		Console.sleep(500);
 	}
 
 	public static abstract interface IShape

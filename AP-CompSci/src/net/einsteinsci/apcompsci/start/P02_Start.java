@@ -23,9 +23,9 @@ package net.einsteinsci.apcompsci.start;
 import net.einsteinsci.apcompsci.Console;
 import net.einsteinsci.apcompsci.p02_math.*;
 
-public class P02_Start
+public class P02_Start implements IStartable
 {
-	public static void main()
+	public void main()
 	{
 		Console.println("====================================================\nFIBONACCI:");
 		P02_Fibonacci.main(Console.getInt("First n Fibonacci numbers: "), false);

@@ -61,17 +61,20 @@
 
 package net.einsteinsci.apcompsci;
 
+import net.einsteinsci.apcompsci.start.IStartable;
 import net.einsteinsci.apcompsci.start.P04_Start;
 
 public final class Start 
 {
+	public static final IStartable program = new P04_Start();
+
 	public static void main(String[] args) 
 	{
 		//=====================//
 		// Launch Section Here //
 		//=====================//
 
-		P04_Start.main();
+		program.main();
 	}
 }
 

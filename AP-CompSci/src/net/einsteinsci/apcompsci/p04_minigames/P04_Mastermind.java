@@ -123,14 +123,15 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
 import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.start.IStartable;
 
 import java.util.*;
 
-public class P04_Mastermind
+public class P04_Mastermind implements IStartable
 {
 	public static boolean DEBUG = true;
 	
-	public static void main()
+	public void main()
 	{
 		MastermindGame game = new MastermindGame();
 		game.runGame();

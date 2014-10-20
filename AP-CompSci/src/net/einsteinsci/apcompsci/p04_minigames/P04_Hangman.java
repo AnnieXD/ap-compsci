@@ -1,12 +1,13 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
 import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.start.IStartable;
 
 import java.util.Random;
 
-public class P04_Hangman
+public class P04_Hangman implements IStartable
 {
-	public static void main()
+	public void main()
 	{
 		HangmanGame game = new HangmanGame();
         game.playGame();

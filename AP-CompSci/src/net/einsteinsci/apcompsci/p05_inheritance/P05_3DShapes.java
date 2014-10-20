@@ -2,10 +2,11 @@ package net.einsteinsci.apcompsci.p05_inheritance;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
 import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.start.IStartable;
 
-public class P05_3DShapes
+public class P05_3DShapes implements IStartable
 {
-	public static void main()
+	public void main()
 	{
 		Shapeoid oid = null;
 
