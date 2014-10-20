@@ -3,6 +3,7 @@ package net.einsteinsci.apcompsci.p05_inheritance;
 import net.einsteinsci.apcompsci.Console;
 import net.einsteinsci.apcompsci.start.IStartable;
 
+// Look familiar? This time it runs twice.
 public class P05_2DShapes implements IStartable
 {
 	public void main()
