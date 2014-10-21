@@ -30,7 +30,7 @@
 
 package net.einsteinsci.apcompsci.p03_strings;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 
 public class P03_PrintRange
 {
@@ -41,20 +41,20 @@ public class P03_PrintRange
 	
 	public static void printRange(int a, int b)
 	{
-		Console.print("[");
+		ConsoleUtils.print("[");
 		if (a == b)
 		{
-			Console.print(a);
+			ConsoleUtils.print(a);
 		}
 		else if (a < b)
 		{
 			for (int i = a; i <= b; ++i)
 			{
-				Console.print(i);
+				ConsoleUtils.print(i);
 				
 				if (i < b)
 				{
-					Console.print(", ");
+					ConsoleUtils.print(", ");
 				}
 			}
 		}
@@ -62,11 +62,11 @@ public class P03_PrintRange
 		{
 			for (int i = a; i >= b; --i)
 			{
-				Console.print(i);
+				ConsoleUtils.print(i);
 				
 				if (i > b)
 				{
-					Console.print(", ");
+					ConsoleUtils.print(", ");
 				}
 			}
 		}
@@ -74,6 +74,6 @@ public class P03_PrintRange
 		{
 			throw new IllegalStateException("WARNING: Mathematical impossibility in progress...");
 		}
-		Console.println("]");
+		ConsoleUtils.println("]");
 	}
 }

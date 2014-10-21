@@ -122,7 +122,7 @@
 
 package net.einsteinsci.apcompsci.p04_minigames;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 import net.einsteinsci.apcompsci.start.IStartable;
 
 import java.util.*;
@@ -162,21 +162,21 @@ public class P04_Mastermind implements IStartable
 		{
 			if (DEBUG)
 			{
-				Console.println("Number loaded: " + pattern.getString());
+				ConsoleUtils.println("Number loaded: " + pattern.getString());
 			}
 			else
 			{
-				Console.println("Number loaded.");
+				ConsoleUtils.println("Number loaded.");
 			}
-			Console.println();
+			ConsoleUtils.println();
 			
 			while (true)
 			{
-				String guess = Console.getLine("Guess: ");
+				String guess = ConsoleUtils.getLine("Guess: ");
 				if (guess.equalsIgnoreCase("cheat"))
 				{
-					Console.println("Answer: " + pattern.getString());
-					Console.println();
+					ConsoleUtils.println("Answer: " + pattern.getString());
+					ConsoleUtils.println();
 					continue;
 				}
 				
@@ -184,17 +184,17 @@ public class P04_Mastermind implements IStartable
 				
 				if (hasWon())
 				{
-					Console.println("Correct!");
+					ConsoleUtils.println("Correct!");
 					break;
 				}
 			
-				Console.println("Incorrect.");
-				Console.println("Numbers correct: " + getSameNumCount());
-				Console.println("Exact matches: " + getExactMatchCount());
-				Console.println();
+				ConsoleUtils.println("Incorrect.");
+				ConsoleUtils.println("Numbers correct: " + getSameNumCount());
+				ConsoleUtils.println("Exact matches: " + getExactMatchCount());
+				ConsoleUtils.println();
 			}
 			
-			Console.println("Guesses taken: " + guessCount);
+			ConsoleUtils.println("Guesses taken: " + guessCount);
 		}
 		
 		public void guess(String guess)

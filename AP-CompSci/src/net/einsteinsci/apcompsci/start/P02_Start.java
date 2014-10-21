@@ -20,20 +20,22 @@
 
 package net.einsteinsci.apcompsci.start;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 import net.einsteinsci.apcompsci.p02_math.*;
 
 public class P02_Start implements IStartable
 {
 	public void main()
 	{
-		Console.println("====================================================\nFIBONACCI:");
-		P02_Fibonacci.main(Console.getInt("First n Fibonacci numbers: "), false);
-		Console.println("====================================================\nSQUARES:");
-		P02_Squares.main(Console.getInt("First n square numbers: "));
-		Console.println("====================================================\nQUADRATIC:");
-		P02_Quadratic.main(Console.getFloat("Ax^2 + Bx + C\nA = "), Console.getFloat("B = "), Console.getFloat("C = "));
-		Console.println("====================================================\nTRIANGLE:");
-		P02_Triangle.main(Console.getFloat("Side A: "), Console.getFloat("Side B: "), Console.getFloat("Side C: "));
+		ConsoleUtils.println("====================================================\nFIBONACCI:");
+		P02_Fibonacci.main(ConsoleUtils.getInt("First n Fibonacci numbers: "), false);
+		ConsoleUtils.println("====================================================\nSQUARES:");
+		P02_Squares.main(ConsoleUtils.getInt("First n square numbers: "));
+		ConsoleUtils.println("====================================================\nQUADRATIC:");
+		P02_Quadratic.main(ConsoleUtils.getFloat("Ax^2 + Bx + C\nA = "), ConsoleUtils.getFloat("B = "), ConsoleUtils
+				.getFloat("C = "));
+		ConsoleUtils.println("====================================================\nTRIANGLE:");
+		P02_Triangle.main(
+				ConsoleUtils.getFloat("Side A: "), ConsoleUtils.getFloat("Side B: "), ConsoleUtils.getFloat("Side C: "));
 	}
 }

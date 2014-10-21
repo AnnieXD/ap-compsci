@@ -60,7 +60,7 @@
 
 package net.einsteinsci.apcompsci.p03_strings;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 
 public class P03_RomanNumerals
 {
@@ -68,7 +68,7 @@ public class P03_RomanNumerals
 	
 	public static void main(int num)
 	{
-		Console.println("" + num + " = " + roman(num));
+		ConsoleUtils.println("" + num + " = " + roman(num));
 	}
 	
 	private static String roman(int num)

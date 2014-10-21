@@ -2,8 +2,10 @@ package net.einsteinsci.apcompsci;
 
 import java.util.Scanner;
 
-public class Console
+public class ConsoleUtils
 {
+	public static final boolean FALSE_BREAK_ON_ERROR = true;
+
 	private static final Scanner IN = new Scanner(System.in);
 
 	public static void print(Object output)
@@ -22,6 +24,16 @@ public class Console
 	public static void println()
 	{
 		print("\n");
+	}
+
+	public static void falseBreak()
+	{
+		String input = "";
+
+		while (!input.equalsIgnoreCase("continue"))
+		{
+			input = getLine("Breaking on error. Typing 'continue' will continue the program with the error.");
+		}
 	}
 
 	private static void printErr(String s)
@@ -44,6 +56,11 @@ public class Console
 		printErrStackTrace(e);
 
 		printErr("\n");
+
+		if (FALSE_BREAK_ON_ERROR)
+		{
+			falseBreak();
+		}
 	}
 
 	public static void printErrStackTrace(Throwable e)

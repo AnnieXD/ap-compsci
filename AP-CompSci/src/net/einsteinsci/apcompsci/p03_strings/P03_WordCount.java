@@ -69,9 +69,10 @@
 
 package net.einsteinsci.apcompsci.p03_strings;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
+import net.einsteinsci.apcompsci.FileUtils;
 
-import java.io.*;
+import java.io.IOException;
 
 public class P03_WordCount
 {
@@ -80,19 +81,14 @@ public class P03_WordCount
 		String analyze = "";
 		
 		if (filePath)
-		{			
-			try (BufferedReader br = new BufferedReader(new FileReader(document)))
+		{
+			try
 			{
-				String currentline = "";
-				
-				while ((currentline = br.readLine()) != null)
-				{
-					analyze += currentline + "\n"; 
-				}
+				analyze = FileUtils.getFile(document);
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				ConsoleUtils.printErr(e);
 			}
 		}
 		else
@@ -100,12 +96,12 @@ public class P03_WordCount
 			analyze = document;
 		}
 		
-		Console.println("----- Document: ------");
-		Console.println(analyze);
-		Console.println("----------------------");
-		Console.println("Word Count: " + getWordCount(analyze));
-		Console.println("Line Count: " + getLineCount(analyze));
-		Console.println("Character Count (Excluding Whitespace): " + getCharCount(analyze));
+		ConsoleUtils.println("----- Document: ------");
+		ConsoleUtils.println(analyze);
+		ConsoleUtils.println("----------------------");
+		ConsoleUtils.println("Word Count: " + getWordCount(analyze));
+		ConsoleUtils.println("Line Count: " + getLineCount(analyze));
+		ConsoleUtils.println("Character Count (Excluding Whitespace): " + getCharCount(analyze));
 	}
 	
 	private static int getWordCount(String doc)

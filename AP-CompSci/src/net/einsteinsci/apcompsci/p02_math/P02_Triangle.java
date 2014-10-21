@@ -30,17 +30,17 @@
 
 package net.einsteinsci.apcompsci.p02_math;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 
 public class P02_Triangle
 {	
 	public static void main(double a, double b, double c)
 	{
-		Console.println("Side lengths of " + a + ", " + b + ", " + c + ".");
+		ConsoleUtils.println("Side lengths of " + a + ", " + b + ", " + c + ".");
 		
-		Console.println("Angle A: " + angleA(a, b, c));
-		Console.println("Angle B: " + angleB(a, b, c));
-		Console.println("Angle C: " + angleC(a, b, c));
+		ConsoleUtils.println("Angle A: " + angleA(a, b, c));
+		ConsoleUtils.println("Angle B: " + angleB(a, b, c));
+		ConsoleUtils.println("Angle C: " + angleC(a, b, c));
 	}
 	
 	// c2 = a2 + b2 -2abcos(angleA);

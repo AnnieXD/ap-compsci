@@ -87,7 +87,7 @@
 
 package net.einsteinsci.apcompsci.p01_oldlady;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 import net.einsteinsci.apcompsci.start.IStartable;
 
 public final class P01_OldLady implements IStartable
@@ -99,17 +99,17 @@ public final class P01_OldLady implements IStartable
 		for (int i = 0; i < ANIMALS.length; ++i)
 		{
 			printAnimal(i);
-			Console.print("\n");
+			ConsoleUtils.print("\n");
 		}
 	}
 	
 	private static void wasAnOldLady(String animal)
 	{
-		Console.println("There was an old lady who swallowed a " + animal + ",");
+		ConsoleUtils.println("There was an old lady who swallowed a " + animal + ",");
 	}
 	private static void perhaps()
 	{
-		Console.println("Perhaps she'll die.");
+		ConsoleUtils.println("Perhaps she'll die.");
 	}
 	
 	private static String purpose(int swallowedIndex)
@@ -123,15 +123,15 @@ public final class P01_OldLady implements IStartable
 		switch (index)
 		{
 		case 0:
-			Console.println(reasons(index));
+			ConsoleUtils.println(reasons(index));
 			perhaps();
 			break;
 		case 5: //ANIMALS[5] == "horse". Must explicitly state a value here, no dynamic expressions
-			Console.println(specific(ANIMALS[index]));
+			ConsoleUtils.println(specific(ANIMALS[index]));
 			break;
 		default:
-			Console.println(specific(ANIMALS[index]));
-			Console.println(reasons(index));
+			ConsoleUtils.println(specific(ANIMALS[index]));
+			ConsoleUtils.println(reasons(index));
 			perhaps();
 			break;
 		}

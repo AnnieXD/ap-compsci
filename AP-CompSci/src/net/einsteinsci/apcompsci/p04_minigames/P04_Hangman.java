@@ -1,6 +1,6 @@
 package net.einsteinsci.apcompsci.p04_minigames;
 
-import net.einsteinsci.apcompsci.Console;
+import net.einsteinsci.apcompsci.ConsoleUtils;
 import net.einsteinsci.apcompsci.start.IStartable;
 
 import java.util.Random;
@@ -33,32 +33,32 @@ public class P04_Hangman implements IStartable
 		
 		public void playGame()
 		{
-			Console.println("Word loaded.\n");
+			ConsoleUtils.println("Word loaded.\n");
 			render();
 			
 			while (true)
 			{
-				String s = Console.getLine("Guess a letter: ").trim();
+				String s = ConsoleUtils.getLine("Guess a letter: ").trim();
 				
 				if (s.length() > 1)
 				{
-					Console.println("One letter at a time, please.\n");
+					ConsoleUtils.println("One letter at a time, please.\n");
 					continue;
 				}
 				
 				if ((int)s.charAt(0) < (int)'A' || (int)s.charAt(0) > (int)'z')
 				{
-					Console.println("That's not a letter.\n");
+					ConsoleUtils.println("That's not a letter.\n");
 					continue;
 				}
 
-				Console.clearConsole();
+				ConsoleUtils.clearConsole();
 
 				char c = s.charAt(0);
 
 				if (charArrayContains(guessedLetters, c))
 				{
-					Console.println("You already guessed that.\n");
+					ConsoleUtils.println("You already guessed that.\n");
 					continue;
 				}
 				
@@ -77,11 +77,11 @@ public class P04_Hangman implements IStartable
 				
 				if (correct)
 				{
-					Console.println("Letter found!");
+					ConsoleUtils.println("Letter found!");
 				}
 				else
 				{
-					Console.println("Incorrect.");
+					ConsoleUtils.println("Incorrect.");
 					fails++;
 				}
 
@@ -89,13 +89,13 @@ public class P04_Hangman implements IStartable
 
 				if (fails > 5)
 				{
-					Console.println("You lose. The word was: " + new String(word));
+					ConsoleUtils.println("You lose. The word was: " + new String(word));
 					break;
 				}
 
 				if (hasWon())
 				{
-					Console.println("You won!");
+					ConsoleUtils.println("You won!");
 					break;
 				}
 			}
@@ -103,12 +103,12 @@ public class P04_Hangman implements IStartable
 
 		public void render()
 		{
-			Console.println("\nMissed guesses:");
-			Console.println(getWrongLettersRendered());
+			ConsoleUtils.println("\nMissed guesses:");
+			ConsoleUtils.println(getWrongLettersRendered());
 
-			Console.println("\n" + getRenderedMan());
+			ConsoleUtils.println("\n" + getRenderedMan());
 
-			Console.println("\n" + getRenderedWord());
+			ConsoleUtils.println("\n" + getRenderedWord());
 		}
 
 		public boolean hasWon()
