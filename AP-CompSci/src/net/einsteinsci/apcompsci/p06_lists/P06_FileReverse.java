@@ -79,7 +79,7 @@ public class P06_FileReverse implements IStartable
 		{
 			List<Line> replacement = new ArrayList<>();
 
-			for (int i = lines.size() - 1; i > 0; --i)
+			for (int i = lines.size() - 1; i >= 0; --i)
 			{
 				replacement.add(lines.get(i));
 			}
@@ -123,6 +123,8 @@ public class P06_FileReverse implements IStartable
 					currentWord += c;
 				}
 			}
+
+			words.add(currentWord);
 		}
 		public Line(List<String> stuff)
 		{
@@ -150,7 +152,7 @@ public class P06_FileReverse implements IStartable
 		public Line reverseWords()
 		{
 			List<String> replacement = new ArrayList<>();
-			for (int i = words.size() - 1; i > 0; --i)
+			for (int i = words.size() - 1; i >= 0; --i)
 			{
 				replacement.add(words.get(i));
 			}
