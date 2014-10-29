@@ -1,5 +1,6 @@
 package net.einsteinsci.apcompsci;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleUtils
@@ -157,9 +158,21 @@ public class ConsoleUtils
 		return result;
 	}
 
+	public static void skip()
+	{
+		try
+		{
+			System.in.skip(1);
+		}
+		catch (IOException e)
+		{
+			printErr(e);
+		}
+	}
+
 	public static void clearConsole()
 	{
-		//System.out.
+		System.out.flush();
 	}
 
 	public static void sleep(int ms)

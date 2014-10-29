@@ -21,10 +21,10 @@ public class P06_FileReverse implements IStartable
 		String reversedWords = file.reverseWordsInLines().toString();
 		String reversedBoth = file.reverseLines().reverseWordsInLines().toString();
 
-		ConsoleUtils.println("=== NORMAL ===\n" + normal);
-		ConsoleUtils.println("=== LINES ===\n" + reversedLines);
-		ConsoleUtils.println("=== WORDS ===\n" + reversedWords);
-		ConsoleUtils.println("=== BOTH ===\n" + reversedBoth);
+		ConsoleUtils.println("==== NORMAL FILE =====\n" + normal);
+		ConsoleUtils.println("=== LINES REVERSED ===\n" + reversedLines);
+		ConsoleUtils.println("=== WORDS REVERSED ===\n" + reversedWords);
+		ConsoleUtils.println("=== BOTH REVERSED ====\n" + reversedBoth);
 	}
 
 	public static class LineSet

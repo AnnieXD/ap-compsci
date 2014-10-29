@@ -13,11 +13,19 @@ public class P06_Windows implements IStartable
 	public void main()
 	{
 		dwm = new WindowManager();
+		boolean beingStupid = false;
 
 		while (true)
 		{
-			String action = ConsoleUtils.getLine("Enter action. Valid entries are: 'open', 'close',\n" +
-				"'select', 'resize', 'move', 'list', 'exit'");
+			//ConsoleUtils.skip();
+			String action = "";
+			if (!beingStupid)
+			{
+				ConsoleUtils.println("Enter action. Valid entries are: 'open', 'close',\n" +
+											 "'select', 'resize', 'move', 'list', 'exit'");
+				action = ConsoleUtils.getLine("> ");
+				beingStupid = false;
+			}
 
 			action = action.toLowerCase();
 
@@ -43,6 +51,10 @@ public class P06_Windows implements IStartable
 					break;
 				case "exit":
 					return;
+				default:
+					ConsoleUtils.println("Invalid input '" + action + "'. Try again");
+					beingStupid = true;
+					break;
 			}
 		}
 	}
@@ -220,7 +232,7 @@ public class P06_Windows implements IStartable
 		@Override
 		public String toString()
 		{
-			return title + "[x=" + x + ", y=" + y + ", w=" + width + ", h=" + height + "]";
+			return title + " [x=" + x + ", y=" + y + ", w=" + width + ", h=" + height + "]";
 		}
 	}
 }

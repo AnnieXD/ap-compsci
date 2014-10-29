@@ -341,6 +341,8 @@ public class P05_3DShapes implements IStartable
 
 	public static class EquilateralTriangularPyramid extends Pyramid implements IShapeoid
 	{
+		public static final float TANPIOVERTHREE = (float)Math.tan(PI / 3);
+
 		protected float side;
 
 		public EquilateralTriangularPyramid(float s, float h)
@@ -360,7 +362,7 @@ public class P05_3DShapes implements IStartable
 		}
 		protected float getInradius()
 		{
-			return (ROOTTHREEOVERTWO / 3) * side;
+			return side / (2 * TANPIOVERTHREE);
 		}
 
 		public float getSide()
@@ -373,7 +375,14 @@ public class P05_3DShapes implements IStartable
 	{
 		public Tetrahedron(float s)
 		{
-			super(s, ((float)Math.sqrt(2 / 3)) * s);
+			super(s, (float)getTotalAltitude(s));
+		}
+
+		public static double getTotalAltitude(float s)
+		{
+			double hf = ROOTTHREEOVERTWO * s;
+			double ri = s / (2 * TANPIOVERTHREE);
+			return Math.sqrt(hf * hf + ri * ri);
 		}
 	}
 
