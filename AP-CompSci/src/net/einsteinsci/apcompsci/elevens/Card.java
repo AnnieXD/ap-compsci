@@ -5,7 +5,15 @@ import net.einsteinsci.apcompsci.ConsoleUtils;
 public class Card
 {
 	String suit;
+	String rank;
 	int value;
+
+	public Card(String suit, String rank, int value)
+	{
+		this.suit = suit;
+		this.rank = rank;
+		this.value = value;
+	}
 
 	public Card(String suit, String rank)
 	{
@@ -51,6 +59,7 @@ public class Card
 				ConsoleUtils.printErr(new IllegalArgumentException("No such rank as " + rank));
 				break;
 		}
+		this.rank = rank;
 	}
 	public Card(String suit, int value)
 	{
@@ -68,6 +77,30 @@ public class Card
 		}
 
 		this.value = value;
+		switch (value)
+		{
+			case 1:
+				rank = "A";
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				rank = "" + value;
+			case 11:
+				rank = "J";
+			case 12:
+				rank = "Q";
+			case 13:
+				rank = "K";
+			default:
+				ConsoleUtils.printErr(new IllegalArgumentException("Unusual card value: " + value));
+				rank = "" + value;
+		}
 	}
 
 	public String getSuit()
