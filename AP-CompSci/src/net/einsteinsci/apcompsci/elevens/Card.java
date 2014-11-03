@@ -139,6 +139,36 @@ public class Card
 		}
 	}
 
+	public boolean isRed()
+	{
+		return getSuit().equalsIgnoreCase("hearts") || getSuit().equalsIgnoreCase("diamonds");
+	}
+
+	public boolean matches(Card c)
+	{
+		return this.equals(c);
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj instanceof Card)
+		{
+			Card c = (Card)obj;
+			return c.getValue() == getValue() && c.getSuit() == getSuit();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	@Override
+	public Card clone()
+	{
+		return new Card(getSuit(), getRank());
+	}
+
 	@Override
 	public String toString()
 	{

@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Deck
 {
-	List<Card> cards;
-	int size;
+	private List<Card> cards;
+	private int size;
 
 	public Deck()
 	{
@@ -80,5 +80,50 @@ public class Deck
 	public boolean isEmpty()
 	{
 		return size == 0;
+	}
+
+	public boolean matches(Deck deck)
+	{
+		return this.equals(deck);
+	}
+
+	@Override
+	public Deck clone()
+	{
+		Deck res = new Deck();
+
+		for (Card c : getCards())
+		{
+			res.getCards().add(c.clone());
+		}
+
+		return res;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj instanceof Deck)
+		{
+			Deck d = (Deck)obj;
+
+			if (d.size() != size())
+			{
+				return false;
+			}
+
+			for (int i = 0; i < size(); i++)
+			{
+				if (!d.getCards().get(i).matches(getCards().get(i)))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
