@@ -1,13 +1,20 @@
 package net.einsteinsci.apcompsci.elevens;
 
+import net.einsteinsci.apcompsci.ConsoleUtils;
 import net.einsteinsci.apcompsci.start.IStartable;
 
 public class ElevensTester implements IStartable
 {
+	public static ElevensTester instance = new ElevensTester();
+
 	@Override
 	public void main()
 	{
+		test1cardDeck();
+		test2cardDeck();
+		testShuffle();
 
+		ConsoleUtils.println("Everything checks out!");
 	}
 
 	void test1cardDeck()
@@ -16,7 +23,7 @@ public class ElevensTester implements IStartable
 		Card c = new Card("spades", 1);
 		one.getCards().add(c);
 
-		assert c.getRank() == "A" : "Rank does not check out: " + c.getRank();
+		assert c.getRankLetter() == "A" : "Rank does not check out: " + c.getRank();
 		assert c.getSuit() == "spades" : "Suit does not check out: " + c.getSuit();
 		assert c.getValue() == 1 : "Value does not check out: " + c.getValue();
 	}

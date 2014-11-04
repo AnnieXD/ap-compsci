@@ -48,26 +48,42 @@ public class Deck
 
 	public void shuffle()
 	{
-		Card[] deck = (Card[])cards.toArray();
+		Object[] deck = cards.toArray();
 		Random rand = new Random();
 
 		for (int k = deck.length - 1; k >= 0; --k)
 		{
-			int r = rand.nextInt(k);
-			Card one = deck[r];
-			Card two = deck[k];
+			int r = rand.nextInt(k + 1);
+
+			assert (deck[r] instanceof Card) : "deck[" + r + "] (r) is not a Card.\n\ttoString() = " + deck[r].toString();
+			assert (deck[k] instanceof Card) : "deck[" + k + "] (k) is not a Card.\n\ttoString() = " + deck[k].toString();
+
+			if (!(deck[r] instanceof Card && deck[k] instanceof Card))
+			{
+				throw new IllegalStateException("Something in this deck isn't a card.");
+			}
+
+			Card one = (Card)deck[r];
+			Card two = (Card)deck[k];
 			deck[k] = one;
 			deck[r] = two;
 		}
 
 		cards = new ArrayList<>();
-		Collections.addAll(cards, deck);
+		//Collections.addAll(cards, deck);
+		for (Object obj : deck)
+		{
+			if (obj instanceof Card)
+			{
+				cards.add((Card) obj);
+			}
+		}
 		size = deck.length;
 	}
 
 	public Card deal()
 	{
-		if (size == 0)
+		if (isEmpty())
 		{
 			return null;
 		}
@@ -75,6 +91,11 @@ public class Deck
 		Card drawn = cards.get(size - 1);
 		size--;
 		return drawn;
+	}
+
+	public void add(Card c)
+	{
+		cards.add(c);
 	}
 
 	public boolean isEmpty()
@@ -125,5 +146,41 @@ public class Deck
 		{
 			return false;
 		}
+	}
+
+	@Override
+	public String toString()
+	{
+		String result = "size = " + size + "\nUndealt cards: \n";
+
+		for (int i = size - 1; i >= 0; --i)
+		{
+			result += cards.get(i).toString();
+			if (i != 0)
+			{
+				result += ", ";
+			}
+			if ((size - i) % 2 == 0)
+			{
+				result += "\n";
+			}
+		}
+
+		result += "\nDealt cards: \n";
+		for (int i = cards.size() - 1; i >= size; --i)
+		{
+			result += cards.get(i).toString();
+			if (i != size)
+			{
+				result += ", ";
+			}
+			if ((i - cards.size()) % 2 == 0)
+			{
+				result += "\n";
+			}
+		}
+
+		result += "\n";
+		return result;
 	}
 }

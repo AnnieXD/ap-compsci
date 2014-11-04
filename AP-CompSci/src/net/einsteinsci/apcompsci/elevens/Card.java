@@ -17,7 +17,7 @@ public class Card
 
 	public Card(String suit, String rank)
 	{
-		switch (suit)
+		switch (suit.toLowerCase())
 		{
 			case "spades":
 			case "hearts":
@@ -30,9 +30,10 @@ public class Card
 				break;
 		}
 
-		switch (rank)
+		switch (rank.toLowerCase())
 		{
-			case "A":
+			case "a":
+			case "ace":
 				value = 1;
 				break;
 			case "2":
@@ -46,13 +47,16 @@ public class Card
 			case "10":
 				value = Integer.parseInt(rank);
 				break;
-			case "J":
+			case "j":
+			case "jack":
 				value = 11;
 				break;
-			case "Q":
+			case "q":
+			case "queen":
 				value = 12;
 				break;
-			case "K":
+			case "k":
+			case "king":
 				value = 13;
 				break;
 			default:
@@ -63,7 +67,7 @@ public class Card
 	}
 	public Card(String suit, int value)
 	{
-		switch (suit)
+		switch (suit.toLowerCase())
 		{
 			case "spades":
 			case "hearts":
@@ -81,6 +85,7 @@ public class Card
 		{
 			case 1:
 				rank = "A";
+				break;
 			case 2:
 			case 3:
 			case 4:
@@ -91,15 +96,20 @@ public class Card
 			case 9:
 			case 10:
 				rank = "" + value;
+				break;
 			case 11:
 				rank = "J";
+				break;
 			case 12:
 				rank = "Q";
+				break;
 			case 13:
 				rank = "K";
+				break;
 			default:
 				ConsoleUtils.printErr(new IllegalArgumentException("Unusual card value: " + value));
 				rank = "" + value;
+				break;
 		}
 	}
 
@@ -133,6 +143,33 @@ public class Card
 				return "Queen";
 			case 13:
 				return "King";
+			default:
+				ConsoleUtils.printErr(new IllegalArgumentException("Unusual card value: " + value));
+				return "ERROR";
+		}
+	}
+	public String getRankLetter()
+	{
+		switch (value)
+		{
+			case 1:
+				return "A";
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				return "" + value;
+			case 11:
+				return "J";
+			case 12:
+				return "Q";
+			case 13:
+				return "K";
 			default:
 				ConsoleUtils.printErr(new IllegalArgumentException("Unusual card value: " + value));
 				return "ERROR";
