@@ -4,7 +4,7 @@ import net.einsteinsci.apcompsci.ConsoleUtils;
 
 import java.util.*;
 
-public class Board
+public class ElevensBoard
 {
 	public static final boolean DEBUG = true;
 
@@ -17,7 +17,7 @@ public class Board
 	public Card[] cards;
 	public Deck deck;
 
-	public Board()
+	public ElevensBoard()
 	{
 		cards = new Card[CARD_COUNT];
 		deck = makeShuffledDeck();
@@ -100,13 +100,23 @@ public class Board
 		return result;
 	}
 
-	public static void printCards(Board board)
+	public static void printCards(ElevensBoard board)
 	{
 		List<Integer> indexes = board.getIndexes();
 
 		ConsoleUtils.println("Selected Cards:");
 
-		// YOU ARE HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		String printed = "";
+		for (Integer n : board.getIndexes())
+		{
+			printed += "\t" + board.cards[n].toString() + "\n";
+		}
+
+		ConsoleUtils.println(printed);
+	}
+	public void printCards()
+	{
+		printCards(this);
 	}
 
 	public static Deck makeFullDeck()
