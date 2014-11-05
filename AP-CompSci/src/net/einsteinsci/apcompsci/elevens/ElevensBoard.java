@@ -1,152 +1,94 @@
 package net.einsteinsci.apcompsci.elevens;
 
-import net.einsteinsci.apcompsci.ConsoleUtils;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.*;
-
-public class ElevensBoard
+public class ElevensBoard extends Board
 {
-	public static final boolean DEBUG = true;
-
-	public static final int CARD_COUNT = 9;
-
-	public static final String[] SUITS = {"spades", "hearts", "diamonds", "clubs"};
-	public static final String[] RANKS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-	public static final int[] VALUES = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0};
-
-	public Card[] cards;
-	public Deck deck;
+	@Override
+	public int size()
+	{
+		return 9;
+	}
 
 	public ElevensBoard()
 	{
-		cards = new Card[CARD_COUNT];
-		deck = makeShuffledDeck();
-
-		if (DEBUG)
-		{
-			ConsoleUtils.println(deck);
-		}
+		super();
 	}
 
-	public void restart()
+	@Override
+	public boolean isLegal(List<Integer> cards)
 	{
-		deck.shuffle();
+		return containsPairSumEleven(cards) || consistsOfJQK(cards);
 	}
 
-	public void deal()
+	@Override
+	public boolean isAnotherPlayPossible()
 	{
-		for (int i = 0; i < CARD_COUNT; ++i)
+		for (int i = 0; i < size(); ++i)
 		{
-			cards[i] = deck.deal();
-		}
-	}
-
-	public void replace(List<Integer> selected)
-	{
-		for (Integer n : selected)
-		{
-			cards[n] = deck.deal();
-		}
-	}
-
-	public boolean hasWon()
-	{
-		if (deck.isEmpty())
-		{
-			for (Card c : cards)
+			for (int j = 0; j < size(); ++j)
 			{
-				if (c != null)
+				List<Integer> ids = new ArrayList<>();
+				ids.add(i);
+				ids.add(j);
+
+				if (containsPairSumEleven(ids))
 				{
-					return false;
+					return true;
 				}
 			}
-			return true;
 		}
+
+		for (int i = 0; i < size(); ++i)
+		{
+			for (int j = 0; j < size(); ++j)
+			{
+				for (int k = 0; k < size(); ++k)
+				{
+					List<Integer> ids = new ArrayList<>();
+					ids.add(i);
+					ids.add(j);
+					ids.add(k);
+
+					if (consistsOfJQK(ids))
+					{
+						return true;
+					}
+				}
+			}
+		}
+
 		return false;
 	}
 
-	public List<Integer> getIndexes()
+	public boolean containsPairSumEleven(List<Integer> selected)
 	{
-		List<Integer> selected = new ArrayList<>();
-
-		for (int i = 0; i < CARD_COUNT; ++i)
+		if (selected.size() != 2)
 		{
-			if (cards[i] != null)
-			{
-				selected.add(i);
-			}
+			return false;
 		}
 
-		return selected;
+		int a = VALUES[cards[selected.get(0)].getValue() - 1];
+		int b = VALUES[cards[selected.get(1)].getValue() - 1];
+
+		return a + b == 11;
 	}
 
-	public int getDeckSize()
+	public boolean consistsOfJQK(List<Integer> selected)
 	{
-		return deck.size();
-	}
-
-	public Card getCardDealt(int index)
-	{
-		return cards[index];
-	}
-
-	public String toString()
-	{
-		String result = "";
-		for (int i = 0; i < CARD_COUNT; ++i)
+		if (selected.size() != 3)
 		{
-			result += i + ": " + cards[i].toString() + "\n";
-		}
-		return result;
-	}
-
-	public static void printCards(ElevensBoard board)
-	{
-		List<Integer> indexes = board.getIndexes();
-
-		ConsoleUtils.println("Selected Cards:");
-
-		String printed = "";
-		for (Integer n : board.getIndexes())
-		{
-			printed += "\t" + board.cards[n].toString() + "\n";
+			return false;
 		}
 
-		ConsoleUtils.println(printed);
-	}
-	public void printCards()
-	{
-		printCards(this);
-	}
+		List<String> ranks = new ArrayList<>();
 
-	public static Deck makeFullDeck()
-	{
-		Deck deck = new Deck();
-
-		for (String suit : SUITS)
+		for (Integer n : selected)
 		{
-			for (String rank : RANKS)
-			{
-				Card c = new Card(suit, rank);
-				deck.add(c);
-			}
+			ranks.add(cards[n].getRank().toLowerCase());
 		}
 
-		return deck;
-	}
-
-	public static Deck makeShuffledDeck()
-	{
-		Deck deck = makeFullDeck();
-
-		Random rand = new Random();
-
-		int max = rand.nextInt(5);
-		for (int i = 0; i < max; ++i)
-		{
-			deck.shuffle();
-		}
-
-		return deck;
+		return ranks.contains("jack") && ranks.contains("queen") && ranks.contains("king");
 	}
 }
