@@ -74,13 +74,34 @@ public class CardGameGUI extends JFrame implements ActionListener
 	/** The number of games played. */
 	private int totalGames;
 
+	private boolean isSimulated;
+
+	public void clickCard(int cardId)
+	{
+		if (board.getCardDealt(cardId) != null)
+		{
+			selections[cardId] = !selections[cardId];
+		}
+	}
+
+	public void clickReplace()
+	{
+		replace();
+	}
+
+	public void clickRestart()
+	{
+		replace();
+	}
 
 	/**
 	 * Initialize the GUI.
 	 * @param gameBoard is a <code>Board</code> subclass.
 	 */
-	public CardGameGUI(Board gameBoard)
+	public CardGameGUI(Board gameBoard, boolean simulated)
 	{
+		isSimulated = simulated;
+
 		board = gameBoard;
 		totalWins = 0;
 		totalGames = 0;
@@ -169,7 +190,7 @@ public class CardGameGUI extends JFrame implements ActionListener
 		int boardLen = "Board".length();
 		String boardStr = className.substring(classNameLen - boardLen);
 
-		if (boardStr.equals("Board") || boardStr.equals("board"))
+		if (boardStr.equalsIgnoreCase("board"))
 		{
 			int titleLength = classNameLen - boardLen;
 			setTitle(className.substring(0, titleLength));
@@ -292,65 +313,79 @@ public class CardGameGUI extends JFrame implements ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource().equals(replaceButton))
+		if (!isSimulated)
 		{
-			// Gather all the selected cards.
-			List<Integer> selection = new ArrayList<>();
-			for (int k = 0; k < board.size(); k++)
+			if (e.getSource().equals(replaceButton))
 			{
-				if (selections[k])
-				{
-					selection.add(k);
-				}
-			}
+				replace();
 
-			// Make sure that the selected cards represent a legal replacement.
-			if (!board.isLegal(selection))
+			}
+			else if (e.getSource().equals(restartButton))
+			{
+				restart();
+			}
+			else
 			{
 				signalError();
-				return;
 			}
-			for (int k = 0; k < board.size(); k++)
-			{
-				selections[k] = false;
-			}
-
-			// Do the replace.
-			board.replace(selection);
-
-			if (board.hasWon())
-			{
-				signalWin();
-			}
-			else if (!board.isAnotherPlayPossible())
-			{
-				signalLoss();
-			}
-
-			repaint();
 		}
-		else if (e.getSource().equals(restartButton))
+	}
+
+	private void restart()
+	{
+		board.restart();
+		getRootPane().setDefaultButton(replaceButton);
+		winMsg.setVisible(false);
+		lossMsg.setVisible(false);
+		if (!board.isAnotherPlayPossible())
 		{
-			board.restart();
-			getRootPane().setDefaultButton(replaceButton);
-			winMsg.setVisible(false);
-			lossMsg.setVisible(false);
-			if (!board.isAnotherPlayPossible())
-			{
-				signalLoss();
-				lossMsg.setVisible(true);
-			}
-
-			for (int i = 0; i < selections.length; i++)
-			{
-				selections[i] = false;
-			}
-			repaint();
+			signalLoss();
+			lossMsg.setVisible(true);
 		}
-		else
+
+		for (int i = 0; i < selections.length; i++)
+		{
+			selections[i] = false;
+		}
+		repaint();
+	}
+
+	private void replace()
+	{
+		// Gather all the selected cards.
+		List<Integer> selection = new ArrayList<>();
+		for (int k = 0; k < board.size(); k++)
+		{
+			if (selections[k])
+			{
+				selection.add(k);
+			}
+		}
+
+		// Make sure that the selected cards represent a legal replacement.
+		if (!board.isLegal(selection))
 		{
 			signalError();
+			return;
 		}
+		for (int k = 0; k < board.size(); k++)
+		{
+			selections[k] = false;
+		}
+
+		// Do the replace.
+		board.replace(selection);
+
+		if (board.hasWon())
+		{
+			signalWin();
+		}
+		else if (!board.isAnotherPlayPossible())
+		{
+			signalLoss();
+		}
+
+		repaint();
 	}
 
 	/**
@@ -384,16 +419,19 @@ public class CardGameGUI extends JFrame implements ActionListener
 		 */
 		public void mouseClicked(MouseEvent e)
 		{
-			for (int k = 0; k < board.size(); k++)
+			if (!isSimulated)
 			{
-				if (e.getSource().equals(displayCards[k]) && board.cardAt(k) != null)
+				for (int k = 0; k < board.size(); k++)
 				{
-					selections[k] = !selections[k];
-					repaint();
-					return;
+					if (e.getSource().equals(displayCards[k]) && board.cardAt(k) != null)
+					{
+						selections[k] = !selections[k];
+						repaint();
+						return;
+					}
 				}
+				signalError();
 			}
-			signalError();
 		}
 
 		/**
