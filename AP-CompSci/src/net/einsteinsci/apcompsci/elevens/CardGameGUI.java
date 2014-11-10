@@ -132,6 +132,11 @@ public class CardGameGUI extends JFrame implements ActionListener
 		repaint();
 	}
 
+	public Board getBoard()
+	{
+		return board;
+	}
+
 	/**
 	 * Run the game.
 	 */

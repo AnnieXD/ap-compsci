@@ -12,8 +12,9 @@ public class ElevensGUIRunner
 	 */
 	public static void main(String... args)
 	{
-		CardGameGUI gui = new CardGameGUI(new ThirteensBoard(), true);
 		ElevensSimulator sim = new ElevensSimulator();
-		gui.displayGame();
+		sim.getGUI().displayGame();
+
+		sim.runGame();
 	}
 }
