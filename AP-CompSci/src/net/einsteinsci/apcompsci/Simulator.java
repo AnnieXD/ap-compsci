@@ -1,7 +1,7 @@
 package net.einsteinsci.apcompsci;
 
+import net.einsteinsci.apcompsci.elevens.Board;
 import net.einsteinsci.apcompsci.elevens.CardGameGUI;
-import net.einsteinsci.apcompsci.elevens.ElevensBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import java.util.List;
 public abstract class Simulator
 {
 	public CardGameGUI game;
-	public ElevensBoard board;
+	public Board board;
 
-	public static final boolean DO_PAUSES = true;
-	public static final int PAUSE_TIME = 10;
+	public static final boolean DO_PAUSES = false;
+	public static final int PAUSE_TIME = 1;
 	public static final int GAME_COUNT = 100;
 
 	public int wins;
@@ -20,10 +20,10 @@ public abstract class Simulator
 
 	public List<Boolean> gameResults;
 
-	public Simulator()
+	public Simulator(Board gameboard)
 	{
 		gameResults = new ArrayList<>();
-		board = new ElevensBoard();
+		board = gameboard;
 		game = new CardGameGUI(board, true);
 		wins = 0;
 		losses = 0;
@@ -31,6 +31,7 @@ public abstract class Simulator
 
 	public void runGame()
 	{
+		long start = System.nanoTime();
 		resetStats();
 		game.clickRestart();
 
@@ -54,7 +55,17 @@ public abstract class Simulator
 			game.clickRestart();
 		}
 
-		ConsoleUtils.println("\nCOMPLETE!");
+		ConsoleUtils.println();
+		ConsoleUtils.println("COMPLETE!");
+
+		ConsoleUtils.println();
+		double rate = (double)wins / (double)GAME_COUNT;
+		int pct = (int)(rate * 100.0f);
+		ConsoleUtils.println("Wins: " + wins + " out of " + GAME_COUNT + " (" + pct + "%)");
+
+		long end = System.nanoTime();
+		double time = ((double)(end - start)) / (long)1000000000;
+		ConsoleUtils.println("Time Elapsed: " + time + " sec");
 	}
 
 	private void resetStats()
@@ -94,7 +105,7 @@ public abstract class Simulator
 		return game;
 	}
 
-	public ElevensBoard getBoard()
+	public Board getBoard()
 	{
 		return board;
 	}

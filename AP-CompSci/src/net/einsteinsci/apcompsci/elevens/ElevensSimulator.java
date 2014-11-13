@@ -7,6 +7,14 @@ import java.util.List;
 
 public class ElevensSimulator extends Simulator
 {
+	ElevensBoard eBoard;
+
+	public ElevensSimulator()
+	{
+		super(new ElevensBoard());
+		eBoard = (ElevensBoard)board;
+	}
+
 	public List<Integer> getNextMatch()
 	{
 		List<Integer> res = new ArrayList<>();
@@ -24,7 +32,7 @@ public class ElevensSimulator extends Simulator
 				res.add(i);
 				res.add(j);
 
-				boolean isEleven = board.containsPairSumEleven(res);
+				boolean isEleven = eBoard.containsPairSumEleven(res);
 				if (isEleven)
 				{
 					return res;
@@ -48,7 +56,7 @@ public class ElevensSimulator extends Simulator
 					res.add(j);
 					res.add(k);
 
-					if (board.consistsOfJQK(res))
+					if (eBoard.consistsOfJQK(res))
 					{
 						return res;
 					}

@@ -4,7 +4,7 @@ package net.einsteinsci.apcompsci.elevens;
  * This is a class that plays the GUI version of the Elevens game.
  * See accompanying documents for a description of how Elevens is played.
  */
-public class ElevensGUIRunner
+public class SoloGUIRunner
 {
 	/**
 	 * Plays the GUI version of Elevens.
@@ -12,7 +12,7 @@ public class ElevensGUIRunner
 	 */
 	public static void main(String... args)
 	{
-		ElevensSimulator sim = new ElevensSimulator();
+		ThirteensSimulator sim = new ThirteensSimulator();
 		sim.getGUI().displayGame();
 
 		sim.runGame();
