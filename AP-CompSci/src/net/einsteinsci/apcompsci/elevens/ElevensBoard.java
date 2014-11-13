@@ -69,8 +69,16 @@ public class ElevensBoard extends Board
 			return false;
 		}
 
-		int a = VALUES[cards[selected.get(0)].getValue() - 1];
-		int b = VALUES[cards[selected.get(1)].getValue() - 1];
+		Card ca = cards[selected.get(0)];
+		Card cb = cards[selected.get(1)];
+
+		if (ca == null || cb == null)
+		{
+			return false;
+		}
+
+		int a = cards[selected.get(0)].getValue();
+		int b = cards[selected.get(1)].getValue();
 
 		return a + b == 11;
 	}
@@ -86,6 +94,11 @@ public class ElevensBoard extends Board
 
 		for (Integer n : selected)
 		{
+			if (cards[n] == null)
+			{
+				return false;
+			}
+
 			ranks.add(cards[n].getRank().toLowerCase());
 		}
 

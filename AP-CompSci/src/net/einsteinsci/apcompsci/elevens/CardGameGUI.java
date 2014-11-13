@@ -75,6 +75,7 @@ public class CardGameGUI extends JFrame implements ActionListener
 	private int totalGames;
 
 	private boolean isSimulated;
+	private boolean loss;
 
 	public void clickCard(int cardId)
 	{
@@ -82,6 +83,8 @@ public class CardGameGUI extends JFrame implements ActionListener
 		{
 			selections[cardId] = !selections[cardId];
 		}
+
+		repaint();
 	}
 
 	public void clickReplace()
@@ -91,7 +94,7 @@ public class CardGameGUI extends JFrame implements ActionListener
 
 	public void clickRestart()
 	{
-		replace();
+		restart();
 	}
 
 	/**
@@ -101,6 +104,7 @@ public class CardGameGUI extends JFrame implements ActionListener
 	public CardGameGUI(Board gameBoard, boolean simulated)
 	{
 		isSimulated = simulated;
+		loss = false;
 
 		board = gameBoard;
 		totalWins = 0;
@@ -352,6 +356,9 @@ public class CardGameGUI extends JFrame implements ActionListener
 		{
 			selections[i] = false;
 		}
+
+		loss = false;
+
 		repaint();
 	}
 
@@ -396,7 +403,8 @@ public class CardGameGUI extends JFrame implements ActionListener
 	/**
 	 * Display a win.
 	 */
-	private void signalWin() {
+	private void signalWin()
+	{
 		getRootPane().setDefaultButton(restartButton);
 		winMsg.setVisible(true);
 		totalWins++;
@@ -406,10 +414,13 @@ public class CardGameGUI extends JFrame implements ActionListener
 	/**
 	 * Display a loss.
 	 */
-	private void signalLoss() {
+	private void signalLoss()
+	{
 		getRootPane().setDefaultButton(restartButton);
 		lossMsg.setVisible(true);
 		totalGames++;
+		
+		loss = true;
 	}
 
 	/**

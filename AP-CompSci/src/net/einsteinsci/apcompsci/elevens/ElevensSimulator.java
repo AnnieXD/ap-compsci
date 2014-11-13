@@ -1,68 +1,19 @@
 package net.einsteinsci.apcompsci.elevens;
 
-import net.einsteinsci.apcompsci.ConsoleUtils;
+import net.einsteinsci.apcompsci.Simulator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElevensSimulator
+public class ElevensSimulator extends Simulator
 {
-	CardGameGUI game;
-	ElevensBoard board;
-
-	public static final boolean DO_PAUSES = true;
-	public static final int PAUSE_TIME = 100;
-
-	public ElevensSimulator()
-	{
-		board = new ElevensBoard();
-		game = new CardGameGUI(board, true);
-	}
-
-	public void runGame()
-	{
-		game.clickRestart();
-
-		while (!board.hasWon())
-		{
-			List<Integer> match = getNextMatch();
-			if (match == null)
-			{
-				wait(5 * PAUSE_TIME);
-				game.clickRestart();
-				continue;
-			}
-
-			for (Integer n : match)
-			{
-				game.clickCard(n);
-				wait(PAUSE_TIME);
-			}
-
-			wait(PAUSE_TIME);
-			game.clickReplace();
-		}
-
-		ConsoleUtils.println("COMPLETE!");
-	}
-
-	public CardGameGUI getGUI()
-	{
-		return game;
-	}
-
-	public ElevensBoard getBoard()
-	{
-		return board;
-	}
-
-	List<Integer> getNextMatch()
+	public List<Integer> getNextMatch()
 	{
 		List<Integer> res = new ArrayList<>();
 
-		for (int i = 0; i < board.getDeckSize(); ++i)
+		for (int i = 0; i < board.size(); ++i)
 		{
-			for (int j = 0; j < board.getDeckSize(); ++j)
+			for (int j = 0; j < board.size(); ++j)
 			{
 				if (i == j)
 				{
@@ -73,18 +24,19 @@ public class ElevensSimulator
 				res.add(i);
 				res.add(j);
 
-				if (board.containsPairSumEleven(res))
+				boolean isEleven = board.containsPairSumEleven(res);
+				if (isEleven)
 				{
 					return res;
 				}
 			}
 		}
 
-		for (int i = 0; i < board.getDeckSize(); ++i)
+		for (int i = 0; i < board.size(); ++i)
 		{
-			for (int j = 0; j < board.getDeckSize(); ++j)
+			for (int j = 0; j < board.size(); ++j)
 			{
-				for (int k = 0; k < board.getDeckSize(); ++k)
+				for (int k = 0; k < board.size(); ++k)
 				{
 					if (i == j || j == k || i == k)
 					{
@@ -105,13 +57,5 @@ public class ElevensSimulator
 		}
 
 		return null;
-	}
-
-	void wait(int relativePauseTime)
-	{
-		if (DO_PAUSES)
-		{
-			ConsoleUtils.sleep(relativePauseTime);
-		}
 	}
 }
